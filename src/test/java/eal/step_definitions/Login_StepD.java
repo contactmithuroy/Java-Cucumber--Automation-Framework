@@ -1,7 +1,11 @@
 package eal.step_definitions;
 
+import java.util.List;
+
 import org.apache.logging.log4j.*;
 import eal.utilities.CommonMethods;
+import eal.utilities.LogColor;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 
 public class Login_StepD extends CommonMethods {
@@ -78,14 +82,46 @@ public class Login_StepD extends CommonMethods {
 	
 	@Given("Pass {int} digit Numeric userID {int} on userID Field and immidiately Clear it")
 	public void pass_digit_numeric_user_id_on_user_id_field_and_immidiately_clear_it(Integer count, Integer userID) {
+	   String fieldName ="UserID";
+	   String updateUserID =String.valueOf(userID);
+	   String actual_value_from_the_UI = hmpage_pom.passFieldValue(updateUserID, fieldName);
 	   
+	   if(actual_value_from_the_UI.equals(userID)) {
+		   logger.info(LogColor.Blue+"User Id Inserted"+LogColor.RESET);
+	   }else {
+		   logger.info(LogColor.RED+" Different Value Inserted "+LogColor.RESET);
+	   }
+	   String ActualValueAfterClear = hmpage_pom.celarHomePageField(fieldName);
+	   softAssert.softAssertEquals(ActualValueAfterClear,"", "UserField Cleared after typing");
 	}
 
+	@Given("I enter and immediately clear the following UserIDs:")
+	public void enter_and_immediately_clear_ids(DataTable dataTable) {
+		String fieldName ="UserID";
+		List<String> userIDs =  dataTable.asList();	
+		
+		for(String userID:userIDs) {
+			String actual_value_from_the_UI = hmpage_pom.passFieldValue(userID, fieldName);
+			
+			   if(actual_value_from_the_UI.equals(userID)) {
+				   logger.info(LogColor.Blue+"User id inserted"+LogColor.RESET);
+			   }else {
+				   logger.info(LogColor.RED+" Different Value Inserted "+LogColor.RESET);
+			   }
+			   String ActualValueAfterClear = hmpage_pom.celarHomePageField(fieldName);
+			   softAssert.softAssertEquals(ActualValueAfterClear,"", "UserField Cleared after typing");  
+		}
+	}
+	
+
+	
 	@Then("Click on Reset Button")
 	public void click_on_reset_button() {
 	   
 
 	}
+	
+	
                                
 
 }

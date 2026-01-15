@@ -174,5 +174,17 @@ public class HomePagePOM extends CommonMethods {
 	        return "Null";
 	    }
 	}
+	
+	public String celarHomePageField(String fieldName) {
+		String formattedFields = String.format(homePage_fields, fieldName);
+		logger.info(formattedFields);
+		WebElement field = driver.findElement(By.xpath(formattedFields));
+		
+		field.clear();
+		
+		String ActualFieldValueAterClear = getAttributeValue(field, "value");
+		return ActualFieldValueAterClear;
+		
+	}
 
 }

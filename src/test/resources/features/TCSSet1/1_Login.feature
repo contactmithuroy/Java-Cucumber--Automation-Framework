@@ -61,19 +61,31 @@ Scenario Outline: Verify logging in with Invalid credentials in Login Homepage
 	|mngr6467|nebEsAg|@TC_007 |
 	
 	
-@TC_010	
+
 Scenario: Verify User can Clear userID Field after putting multiple Numeric userID by Mistake
-	Given Pass 6 digit Numeric userID 1323456 on userID Field and immidiately Clear it
-	Then Pass 5 digit Numeric userID 132345 on userID Field and immidiately Clear it
-	Then Pass 8 digit Numeric userID 132345678 on userID Field and immidiately Clear it
-	Then Pass 10 digit Numeric userID 13234567891 on userID Field and immidiately Clear it
+	Given Pass 6 digit Numeric userID 123456 on userID Field and immidiately Clear it
+	Then Pass 5 digit Numeric userID 12345 on userID Field and immidiately Clear it
+	Then Pass 8 digit Numeric userID 12345678 on userID Field and immidiately Clear it
+	Then Pass 10 digit Numeric userID 1234567891 on userID Field and immidiately Clear it
 	Then Click on Reset Button
 	
 	
+#User Data Table and List 
+	@TC_010	
+Scenario: Verify User can Clear userID Field after putting multiple Numeric userID by Mistake
+	Given I enter and immediately clear the following UserIDs:
+	|123456|
+	|12345|
+	|12345678|
+	|1234567891|
+	Then click on Reset Button
 	
-	
-	
-	
+	@TC_011
+	Scenarios: Verify multiple UserID and Password combinations
+	Given: I try the following credentials:
+		|mngr6467|000000|
+		|mngr646768|000000|
+		|mngr6467|nebEsAg|
 	
 	
 	
