@@ -1,6 +1,7 @@
 package eal.step_definitions;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.*;
 import eal.utilities.CommonMethods;
@@ -113,12 +114,39 @@ public class Login_StepD extends CommonMethods {
 		}
 	}
 	
-
+	@Given("I try the following credentials:")
+	public void i_try_the_following_credentials(DataTable dataTable) {
+	   List<Map<String, String>> credentials = dataTable.asMaps(String.class,String.class);
+	   
+	   for(Map<String, String> row:credentials) {
+		   String userID = row.get("UserID");
+		   String password = row.get("Password");
+		   
+		   String actual_User_value_from_the_UI = hmpage_pom.passFieldValue(userID, "UserID");
+		   
+		   if(actual_User_value_from_the_UI.equals(userID)) {
+			   logger.info(LogColor.Blue+"User id inserted"+LogColor.RESET);
+		   }else {
+			   logger.info(LogColor.RED+" Different UserID Value Inserted "+LogColor.RESET);
+		   }
+		 
+		   
+		   String actual_Password_value_from_the_UI = hmpage_pom.passFieldValue(password, "Password");
+		   
+		   if(actual_Password_value_from_the_UI.equals(password)) {
+			   logger.info(LogColor.Blue+"Password inserted"+LogColor.RESET);
+		   }else {
+			   logger.info(LogColor.RED+" Different Password Value Inserted "+LogColor.RESET);
+		   }
+		 
+	   }
+	}
 	
-	@Then("Click on Reset Button")
+	@Then("click on Reset Button")
 	public void click_on_reset_button() {
 	   
-
+		boolean isReset = hmpage_pom.isUserIdAndPasswordReset();
+		 softAssert.softAssertTrue(isReset,"", "UserID and Password Field Cleared after typing");
 	}
 	
 	

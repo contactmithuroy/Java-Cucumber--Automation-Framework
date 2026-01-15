@@ -21,6 +21,10 @@ public class HomePagePOM extends CommonMethods {
 	By password_text = By.xpath("//td[contains(text(),'Password')]");
 	@FindBy(xpath = "//input[@type='submit' and @name='btnLogin']")
 		WebElement loginBtn;
+	
+	@FindBy(xpath = "//input[@type='reset' and @name='btnReset']")
+	WebElement resetBtn;
+	
 	By loginText = By.xpath("//input[@type='submit' and @name='btnLogin']");
 	By seleniumBtn = By.xpath("//a[contains(normalize-space(text()),'Selenium') and @class='dropdown-toggle']");
 	By tableDemoBtn = By.xpath("//a[contains(text(),'Table Demo')]");
@@ -174,6 +178,43 @@ public class HomePagePOM extends CommonMethods {
 	        return "Null";
 	    }
 	}
+	public boolean isUserIdAndPasswordReset() {
+
+	    logger.info("Click on Reset Button");
+
+	    String userIdXpath = String.format(homePage_fields, "UserID");
+	    String passwordXpath = String.format(homePage_fields, "Password");
+
+	    WebElement userIDField = driver.findElement(By.xpath(userIdXpath));
+	    WebElement passwordField = driver.findElement(By.xpath(passwordXpath));
+
+	    // Values BEFORE reset
+	    String userIdBeforeReset = userIDField.getAttribute("value");
+	    String passwordBeforeReset = passwordField.getAttribute("value");
+
+	    logger.info("UserID value before reset: " + userIdBeforeReset);
+	    logger.info("Password value before reset: " + passwordBeforeReset);
+
+	    // Perform reset
+	    userIDField.clear();
+	    passwordField.clear();
+
+	    // Values AFTER reset
+	    String userIdAfterReset = userIDField.getAttribute("value");
+	    String passwordAfterReset = passwordField.getAttribute("value");
+
+	    logger.info("UserID value after reset: " + userIdAfterReset);
+	    logger.info("Password value after reset: " + passwordAfterReset);
+
+	    // Reset validation
+	    boolean isUserIdReset = userIdAfterReset == null || userIdAfterReset.trim().isEmpty();
+	    boolean isPasswordReset = passwordAfterReset == null || passwordAfterReset.trim().isEmpty();
+
+	    return isUserIdReset && isPasswordReset;
+	}
+
+
+	
 	
 	public String celarHomePageField(String fieldName) {
 		String formattedFields = String.format(homePage_fields, fieldName);

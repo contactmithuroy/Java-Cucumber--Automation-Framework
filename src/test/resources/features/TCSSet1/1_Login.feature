@@ -67,7 +67,7 @@ Scenario: Verify User can Clear userID Field after putting multiple Numeric user
 	Then Pass 5 digit Numeric userID 12345 on userID Field and immidiately Clear it
 	Then Pass 8 digit Numeric userID 12345678 on userID Field and immidiately Clear it
 	Then Pass 10 digit Numeric userID 1234567891 on userID Field and immidiately Clear it
-	Then Click on Reset Button
+	Then click on Reset Button
 	
 	
 #User Data Table and List 
@@ -81,12 +81,13 @@ Scenario: Verify User can Clear userID Field after putting multiple Numeric user
 	Then click on Reset Button
 	
 	@TC_011
-	Scenarios: Verify multiple UserID and Password combinations
-	Given: I try the following credentials:
+	Scenario: Verify multiple UserID and Password combinations
+	Given I try the following credentials:
+		|UserID|Password|
 		|mngr6467|000000|
 		|mngr646768|000000|
 		|mngr6467|nebEsAg|
-	
+	Then click on Reset Button
 	
 	
 	
