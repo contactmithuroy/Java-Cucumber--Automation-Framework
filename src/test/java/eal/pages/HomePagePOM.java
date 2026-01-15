@@ -153,25 +153,26 @@ public class HomePagePOM extends CommonMethods {
 	}
 	
 	public String clickOnLoginBtn() {
-		try {
-			logger.info("Clicking on login button");
-			
-			 logger.info("before click login button");
-			clickAndDraw(loginBtn);
-			 logger.info("After click login button");
-		
-			Alert alert = driver.switchTo().alert();
-            String text = alert.getText();
-            logger.info("alert text"+text);
-            logger.info("ALERT FOUND: " + text);
-            alert.accept();
-            logger.info("accept alert and returen"+text);
-            return text;
-     
-		} catch (Exception e) {
-			logger.error(LogColor.RED + e + LogColor.RESET);
-			return "Null";
-		}
+	    try {
+	        logger.info("Clicking on login button");
+	        
+	        waitForClickablility(loginBtn);
+	        loginBtn.click();
+	        
+	        logger.info("After click login button");
+	        
+	        waitFor(1);
+	        
+	        Alert alert = waitForAlert();
+	        String text = alert.getText();
+	        logger.info("alert text: " + text);
+	        alert.accept();
+	        return text;
+	        
+	    } catch (Exception e) {
+	        logger.error(LogColor.RED + e + LogColor.RESET);
+	        return "Null";
+	    }
 	}
 
 }

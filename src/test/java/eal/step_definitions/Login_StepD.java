@@ -64,16 +64,28 @@ public class Login_StepD extends CommonMethods {
 
 	@Then("Click on Login button")
 	public void click_on_login_button() {
-		String alertActualMessage = hmpage_pom.clickOnLoginBtn();
-		 logger.error("⚠️ Alert text captured: " + alertActualMessage);
-		String expectedAlertText = "User is not valid";
-		softAssert.softAssertEquals(alertActualMessage,expectedAlertText, expectedAlertText);
+	    String alertActualMessage = hmpage_pom.clickOnLoginBtn();
+	    logger.info("⚠️ Alert text captured: " + alertActualMessage);
+	    String expectedAlertText = "User is not valid";
+	    softAssert.softAssertEquals(alertActualMessage, expectedAlertText, "Alert message verified");
 	}
 
 	@Then("Click on {string} button from the alert")
 	public void click_on_button_from_the_alert(String string) {
-		boolean isUseronHomePage = hmpage_pom.verify_homepage_title();
-		softAssert.softAssertEquals(isUseronHomePage,"Alert accepted and user came to homepage", "Alert not accepted");
+	    boolean isUseronHomePage = hmpage_pom.verify_homepage_title();
+	    softAssert.softAssertTrue(isUseronHomePage, "User on homepage", "Not on homepage");
 	}
+	
+	@Given("Pass {int} digit Numeric userID {int} on userID Field and immidiately Clear it")
+	public void pass_digit_numeric_user_id_on_user_id_field_and_immidiately_clear_it(Integer count, Integer userID) {
+	   
+	}
+
+	@Then("Click on Reset Button")
+	public void click_on_reset_button() {
+	   
+
+	}
+                               
 
 }
