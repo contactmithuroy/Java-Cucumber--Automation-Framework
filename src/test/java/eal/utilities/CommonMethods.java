@@ -74,6 +74,7 @@ import org.testng.asserts.SoftAssert;
 
 import com.google.common.base.Function;
 
+import eal.pages.DashboardPage_POM;
 import eal.pages.HomePagePOM;
 /*
 import eal.pages.DashBoard_POM;
@@ -112,6 +113,7 @@ public class CommonMethods extends Driver {
 	// ================================
 	public static HomePagePOM hmpage_pom = new HomePagePOM();
 	
+	public static DashboardPage_POM dashboardpage_pom = new DashboardPage_POM();
 	
 	
 	// ================================

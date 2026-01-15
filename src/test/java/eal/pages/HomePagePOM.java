@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import eal.utilities.CommonMethods;
+import eal.utilities.ConfigurationReader;
 import eal.utilities.LogColor;
 
 public class HomePagePOM extends CommonMethods {
@@ -40,7 +41,7 @@ public class HomePagePOM extends CommonMethods {
 			String actualTitle = driver.getTitle();
 			logger.info("Got the title");
 
-			String expectedTitle = "Guru99 Bank Home Page";
+			String expectedTitle = ConfigurationReader.getProperty("homeTitle");
 			if (actualTitle.equals(expectedTitle)) {
 				return true;
 			} else {
@@ -177,6 +178,28 @@ public class HomePagePOM extends CommonMethods {
 	        logger.error(LogColor.RED + e + LogColor.RESET);
 	        return "Null";
 	    }
+	}
+	
+	public boolean clickOnLoginBtnWithValidCredentials() {
+		try {
+			waitForClickablility(loginBtn);
+		    loginBtn.click();
+		    
+			logger.info("Getting the Actual Title");
+			
+			String actualTitle = driver.getTitle();
+			logger.info(LogColor.DarkGreen +"Getting Actual title:" +actualTitle+LogColor.RESET);
+
+			String expectedTitle = ConfigurationReader.getProperty("dashboardTitle");
+			if (actualTitle.equals(expectedTitle)) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			logger.error(LogColor.RED + e + LogColor.RESET);
+			return false;
+		}
 	}
 	public boolean isUserIdAndPasswordReset() {
 

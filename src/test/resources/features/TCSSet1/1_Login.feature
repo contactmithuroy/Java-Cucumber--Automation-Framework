@@ -90,5 +90,9 @@ Scenario: Verify User can Clear userID Field after putting multiple Numeric user
 	Then click on Reset Button
 	
 	
-	
+	@TC_013
+Scenario Outline: Verify logging in with valid credentials in Login Homepage
+	Given Pass "mngr652043" on "UserID" Field
+	And Pass "UmEguba" on "Password" Field
+	Then Click on Login button with valid credentials
 				

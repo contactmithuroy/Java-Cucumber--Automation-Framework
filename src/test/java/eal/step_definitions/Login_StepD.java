@@ -70,10 +70,17 @@ public class Login_StepD extends CommonMethods {
 	@Then("Click on Login button")
 	public void click_on_login_button() {
 	    String alertActualMessage = hmpage_pom.clickOnLoginBtn();
-	    logger.info("⚠️ Alert text captured: " + alertActualMessage);
 	    String expectedAlertText = "User is not valid";
 	    softAssert.softAssertEquals(alertActualMessage, expectedAlertText, "Alert message verified");
 	}
+	
+	@Then("Click on Login button with valid credentials")
+	public void click_on_login_button_with_valid_credentials() {
+		  boolean titleMatched = hmpage_pom.clickOnLoginBtnWithValidCredentials();
+		  softAssert.softAssertTrue(titleMatched, "Title Matched Successfully", "Title didnt match");
+		
+	}
+	
 
 	@Then("Click on {string} button from the alert")
 	public void click_on_button_from_the_alert(String string) {
@@ -149,7 +156,7 @@ public class Login_StepD extends CommonMethods {
 		 softAssert.softAssertTrue(isReset,"", "UserID and Password Field Cleared after typing");
 	}
 	
-	
+
                                
 
 }
