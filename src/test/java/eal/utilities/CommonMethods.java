@@ -76,6 +76,7 @@ import com.google.common.base.Function;
 
 import eal.pages.DashboardPage_POM;
 import eal.pages.HomePagePOM;
+import eal.pages.New_CustomerPage_POM;
 /*
 import eal.pages.DashBoard_POM;
 import eal.pages.HomePage_POM;
@@ -114,6 +115,8 @@ public class CommonMethods extends Driver {
 	public static HomePagePOM hmpage_pom = new HomePagePOM();
 	
 	public static DashboardPage_POM dashboardpage_pom = new DashboardPage_POM();
+	
+	public static New_CustomerPage_POM newcustomerpage_pom = new New_CustomerPage_POM();
 	
 	
 	// ================================

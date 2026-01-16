@@ -19,14 +19,14 @@ import io.cucumber.junit.CucumberOptions;
 				"html:target/default-cucumber-reports/htmlReport.html",
 				"json:target/cucumber.json",
 				"junit:target/cucumber.xml",
-				"rerun:target/cucumber.txt",
+				"rerun:target/cucu-mber.txt",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 				"eal.hooks.StepNameListener"
 		},
 		features = "src\\test\\resources\\features",
 		glue = {"eal.step_definitions","eal.hooks"},
 		dryRun = false,
-		tags = "@dashboardtest",
+		tags = "@TC_016",
 		monochrome = true
 )
 

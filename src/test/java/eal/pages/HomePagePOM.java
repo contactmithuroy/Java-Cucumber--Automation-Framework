@@ -13,7 +13,8 @@ import eal.utilities.LogColor;
 
 public class HomePagePOM extends CommonMethods {
 	private static final Logger logger = LogManager.getLogger(CommonMethods.class);
-	//Call page factory for webelement
+
+	// Call page factory for webelement
 	public HomePagePOM() {
 		PageFactory.initElements(driver, this);
 	}
@@ -21,11 +22,11 @@ public class HomePagePOM extends CommonMethods {
 	By user_id_text = By.xpath("//td[contains(text(),'UserID')]");
 	By password_text = By.xpath("//td[contains(text(),'Password')]");
 	@FindBy(xpath = "//input[@type='submit' and @name='btnLogin']")
-		WebElement loginBtn;
-	
+	WebElement loginBtn;
+
 	@FindBy(xpath = "//input[@type='reset' and @name='btnReset']")
 	WebElement resetBtn;
-	
+
 	By loginText = By.xpath("//input[@type='submit' and @name='btnLogin']");
 	By seleniumBtn = By.xpath("//a[contains(normalize-space(text()),'Selenium') and @class='dropdown-toggle']");
 	By tableDemoBtn = By.xpath("//a[contains(text(),'Table Demo')]");
@@ -72,19 +73,19 @@ public class HomePagePOM extends CommonMethods {
 		}
 	}
 
-	 public boolean verify_LOGIN_is_visible() {
-		 try {
-			 boolean presenece = isElementPresent(loginText);
-			 if(presenece) {
-					return true;
-				}else {
-					return false;
-				}
+	public boolean verify_LOGIN_is_visible() {
+		try {
+			boolean presenece = isElementPresent(loginText);
+			if (presenece) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
-			logger.error(LogColor.RED+e + LogColor.RESET);
+			logger.error(LogColor.RED + e + LogColor.RESET);
 			return false;
 		}
-	 }
+	}
 
 	public boolean verify_seleniumBtn_isVisible() {
 		try {
@@ -136,6 +137,9 @@ public class HomePagePOM extends CommonMethods {
 		try {
 			String formattedFields = String.format(homePage_fields, fieldName);
 			logger.info(formattedFields);
+
+			dashboardpage_pom.clickLogout();
+
 			WebElement field = driver.findElement(By.xpath(formattedFields));
 
 			logger.info("Clicking on Fields");
@@ -156,39 +160,39 @@ public class HomePagePOM extends CommonMethods {
 		}
 
 	}
-	
+
 	public String clickOnLoginBtn() {
-	    try {
-	        logger.info("Clicking on login button");
-	        
-	        waitForClickablility(loginBtn);
-	        loginBtn.click();
-	        
-	        logger.info("After click login button");
-	        
-	        waitFor(1);
-	        
-	        Alert alert = waitForAlert();
-	        String text = alert.getText();
-	        logger.info("alert text: " + text);
-	        alert.accept();
-	        return text;
-	        
-	    } catch (Exception e) {
-	        logger.error(LogColor.RED + e + LogColor.RESET);
-	        return "Null";
-	    }
+		try {
+			logger.info("Clicking on login button");
+
+			waitForClickablility(loginBtn);
+			loginBtn.click();
+
+			logger.info("After click login button");
+
+			waitFor(1);
+
+			Alert alert = waitForAlert();
+			String text = alert.getText();
+			logger.info("alert text: " + text);
+			alert.accept();
+			return text;
+
+		} catch (Exception e) {
+			logger.error(LogColor.RED + e + LogColor.RESET);
+			return "Null";
+		}
 	}
-	
+
 	public boolean clickOnLoginBtnWithValidCredentials() {
 		try {
 			waitForClickablility(loginBtn);
-		    loginBtn.click();
-		    
+			loginBtn.click();
+
 			logger.info("Getting the Actual Title");
-			
+
 			String actualTitle = driver.getTitle();
-			logger.info(LogColor.DarkGreen +"Getting Actual title:" +actualTitle+LogColor.RESET);
+			logger.info(LogColor.DarkGreen + "Getting Actual title:" + actualTitle + LogColor.RESET);
 
 			String expectedTitle = ConfigurationReader.getProperty("dashboardTitle");
 			if (actualTitle.equals(expectedTitle)) {
@@ -201,54 +205,52 @@ public class HomePagePOM extends CommonMethods {
 			return false;
 		}
 	}
+
 	public boolean isUserIdAndPasswordReset() {
 
-	    logger.info("Click on Reset Button");
+		logger.info("Click on Reset Button");
 
-	    String userIdXpath = String.format(homePage_fields, "UserID");
-	    String passwordXpath = String.format(homePage_fields, "Password");
+		String userIdXpath = String.format(homePage_fields, "UserID");
+		String passwordXpath = String.format(homePage_fields, "Password");
 
-	    WebElement userIDField = driver.findElement(By.xpath(userIdXpath));
-	    WebElement passwordField = driver.findElement(By.xpath(passwordXpath));
+		WebElement userIDField = driver.findElement(By.xpath(userIdXpath));
+		WebElement passwordField = driver.findElement(By.xpath(passwordXpath));
 
-	    // Values BEFORE reset
-	    String userIdBeforeReset = userIDField.getAttribute("value");
-	    String passwordBeforeReset = passwordField.getAttribute("value");
+		// Values BEFORE reset
+		String userIdBeforeReset = userIDField.getAttribute("value");
+		String passwordBeforeReset = passwordField.getAttribute("value");
 
-	    logger.info("UserID value before reset: " + userIdBeforeReset);
-	    logger.info("Password value before reset: " + passwordBeforeReset);
+		logger.info("UserID value before reset: " + userIdBeforeReset);
+		logger.info("Password value before reset: " + passwordBeforeReset);
 
-	    // Perform reset
-	    userIDField.clear();
-	    passwordField.clear();
+		// Perform reset
+		userIDField.clear();
+		passwordField.clear();
 
-	    // Values AFTER reset
-	    String userIdAfterReset = userIDField.getAttribute("value");
-	    String passwordAfterReset = passwordField.getAttribute("value");
+		// Values AFTER reset
+		String userIdAfterReset = userIDField.getAttribute("value");
+		String passwordAfterReset = passwordField.getAttribute("value");
 
-	    logger.info("UserID value after reset: " + userIdAfterReset);
-	    logger.info("Password value after reset: " + passwordAfterReset);
+		logger.info("UserID value after reset: " + userIdAfterReset);
+		logger.info("Password value after reset: " + passwordAfterReset);
 
-	    // Reset validation
-	    boolean isUserIdReset = userIdAfterReset == null || userIdAfterReset.trim().isEmpty();
-	    boolean isPasswordReset = passwordAfterReset == null || passwordAfterReset.trim().isEmpty();
+		// Reset validation
+		boolean isUserIdReset = userIdAfterReset == null || userIdAfterReset.trim().isEmpty();
+		boolean isPasswordReset = passwordAfterReset == null || passwordAfterReset.trim().isEmpty();
 
-	    return isUserIdReset && isPasswordReset;
+		return isUserIdReset && isPasswordReset;
 	}
 
-
-	
-	
 	public String celarHomePageField(String fieldName) {
 		String formattedFields = String.format(homePage_fields, fieldName);
 		logger.info(formattedFields);
 		WebElement field = driver.findElement(By.xpath(formattedFields));
-		
+
 		field.clear();
-		
+
 		String ActualFieldValueAterClear = getAttributeValue(field, "value");
 		return ActualFieldValueAterClear;
-		
+
 	}
 
 }

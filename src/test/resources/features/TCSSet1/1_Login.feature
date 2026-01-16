@@ -1,4 +1,4 @@
-@login @homepage
+@login @homepage @allTest
 Feature: Testing Homepage Items and Login Related test cases 
 
 Background:
@@ -80,17 +80,21 @@ Scenario: Verify User can Clear userID Field after putting multiple Numeric user
 	|1234567891|
 	Then click on Reset Button
 	
-	@TC_011
+	@TC_011 
 	Scenario: Verify multiple UserID and Password combinations
 	Given I try the following credentials:
 		|UserID|Password|
 		|mngr6467|000000|
 		|mngr646768|000000|
+		|mngr652043|UmEguba|
 		|mngr6467|nebEsAg|
 	Then click on Reset Button
 	
+	#Home Work TC_012
 	
-	@TC_013
+	
+	
+	@TC_013 
 Scenario Outline: Verify logging in with valid credentials in Login Homepage
 	Given Pass "mngr652043" on "UserID" Field
 	And Pass "UmEguba" on "Password" Field
