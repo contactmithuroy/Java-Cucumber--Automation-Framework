@@ -9,8 +9,12 @@ Background:
 @TC_014 
 Scenario: Verify Manager and Logout button is visible in the left side
 	Given "Manager" button is  visible
-	
-#Home Work TC_015
+
+@TC_015
+Scenario: Verify Flash Movie Demo sub-menu visibility under Selenium menu
+  Given Validate User landed on login homepage
+  Then Click on "Selenium" Drop down from the top
+  And the "Flash Movie Demo" sub-menu should be visible under the menu
 
 @TC_016
 Scenario: Add New Customer using Excel Data

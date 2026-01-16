@@ -20,6 +20,14 @@ public class Dashboard_StepD extends CommonMethods {
 		softAssert.softAssertTrue(elementPresences, buttonName + " is visible", buttonName + " is not visible");
 	}
 
+	@Then("the {string} sub-menu should be visible under the menu")
+	public void the_sub_menu_should_be_visible_under_the_menu(String subManu) {
+		logger.info("Verifying Click "+subManu+"  From the top Nav Manu");
+		boolean subNaveBtnisVisible = dashboardpage_pom.verify_sub_nav_manue_Btn_isVisible(subManu);
+		softAssert.softAssertTrue(subNaveBtnisVisible, subManu+" is present in the  dropdown List", subManu+" is not present in the  dropdown List");
+
+	}		
+		
 	@Given("I open the {string} page with title {string}")
 	public void i_open_the_page_with_title(String pageButton, String expectedTitle) {
 		boolean titleMatched = dashboardpage_pom.clickOnLeftPanelButton(pageButton, expectedTitle);

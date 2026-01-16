@@ -28,7 +28,10 @@ public class HomePagePOM extends CommonMethods {
 	WebElement resetBtn;
 
 	By loginText = By.xpath("//input[@type='submit' and @name='btnLogin']");
-	By seleniumBtn = By.xpath("//a[contains(normalize-space(text()),'Selenium') and @class='dropdown-toggle']");
+	
+	private static final String NAV_MANU_BUTTON =
+			"//a[contains(normalize-space(text()),'%s') and @class='dropdown-toggle']";
+	
 	By tableDemoBtn = By.xpath("//a[contains(text(),'Table Demo')]");
 	By dropDownManu = By.xpath("//ul[@class='dropdown-menu']");
 
@@ -43,6 +46,25 @@ public class HomePagePOM extends CommonMethods {
 			logger.info("Got the title");
 
 			String expectedTitle = ConfigurationReader.getProperty("homeTitle");
+			if (actualTitle.equals(expectedTitle)) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			logger.error(LogColor.RED + e + LogColor.RESET);
+			return false;
+		}
+	}
+	
+	public boolean verify_login_homepage_title() {
+		try {
+			logger.info("Getting the Actual Title");
+			String actualTitle = driver.getTitle();
+			logger.info("Got the actual title"+actualTitle);
+
+			String expectedTitle = ConfigurationReader.getProperty("dashboardTitle");
+			logger.info("Expected Title: " +expectedTitle);
 			if (actualTitle.equals(expectedTitle)) {
 				return true;
 			} else {
@@ -87,10 +109,14 @@ public class HomePagePOM extends CommonMethods {
 		}
 	}
 
-	public boolean verify_seleniumBtn_isVisible() {
+	public boolean verify_nav_manue_Btn_isVisible(String navManu) {
 		try {
-			boolean presenece = isElementPresent(seleniumBtn);
-			if (presenece) {
+			
+			String formatedButtonXpath = String.format(NAV_MANU_BUTTON, navManu );
+			logger.info("Xpath: " +formatedButtonXpath);
+			
+			boolean ElementPresence = isElementPresent(By.xpath(formatedButtonXpath));
+			if (ElementPresence) {
 				return true;
 			} else {
 				return false;
@@ -101,11 +127,17 @@ public class HomePagePOM extends CommonMethods {
 		}
 	}
 
-	public boolean click_on_seleniumBtn() {
+	public boolean click_on_nav_manue_Btn(String navManu) {
 		try {
-			WebElement element = waitForElement(seleniumBtn);
-			waitForClickablility(element);
-			clickAndDraw(element);
+			String formatedButtonXpath = String.format(NAV_MANU_BUTTON, navManu );
+			logger.info("Xpath: " +formatedButtonXpath);
+						
+			WebElement button = driver.findElement(By.xpath(formatedButtonXpath));
+			
+			logger.info("Click on Nav Manu");
+			clickAndDraw(button);
+			
+			logger.info("Check the Nav Drop down manue are present");
 			boolean presenece = isElementPresent(dropDownManu);
 			if (presenece) {
 				return true;

@@ -16,7 +16,7 @@ Scenario: Verify Password input is available
 Scenario: Verify LOGIN is available
 	Then Verify LOGIN is _004 @smoke
 Scenario: Verify Table Demo is available
-	Then Click on Selenium Drop down from the top
+	Then Click on "Selenium" Drop down from the top
 	Then Verify Table Demo is available Under Selenium Drop down
 
 # Use this separat Test cases or use bello @InvaliedTest case scenario style
@@ -89,10 +89,7 @@ Scenario: Verify User can Clear userID Field after putting multiple Numeric user
 		|mngr652043|UmEguba|
 		|mngr6467|nebEsAg|
 	Then click on Reset Button
-	
-	#Home Work TC_012
-	
-	
+
 	
 	@TC_013 
 Scenario Outline: Verify logging in with valid credentials in Login Homepage

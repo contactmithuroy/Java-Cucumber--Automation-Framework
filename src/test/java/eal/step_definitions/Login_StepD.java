@@ -38,18 +38,28 @@ public class Login_StepD extends CommonMethods {
 		softAssert.softAssertTrue(verifyLoginBtn, "Login button is visible", " LOGIN button is not visible");
 	}
 	
-	@Then("Click on Selenium Drop down from the top")
-	public void click_on_selenium_drop_down_from_the_top() {
-		logger.info("Verifying Click Selenium Drop Down From the top");
-		boolean seleniumBtnisVisible = hmpage_pom.verify_seleniumBtn_isVisible();
-		softAssert.softAssertTrue(seleniumBtnisVisible, "Selenium Button is visible", "Selenium Button is not visible");
-
-		logger.info("Verifying Click on Selenium Drop Down ");
-		boolean clickAndListExpended = hmpage_pom.click_on_seleniumBtn();
-		logger.info("Performing Selenium Drop Down Assertion");
-		softAssert.softAssertTrue(clickAndListExpended, "Click Selenium dropdown - List expanded",
-				"Not click on Selenium dropdown - List not expanded");
+	@Given("Validate User landed on login homepage")
+	public void validate_user_landed_on_login_homepage() {
+		logger.info("Verify Title");
+		boolean titleMatched = hmpage_pom.verify_login_homepage_title();
+		logger.info("Performing Assertion");
+		softAssert.softAssertTrue(titleMatched, "Title Matched Successfully", "Title didnt match");
 	}
+
+	@Then("Click on {string} Drop down from the top")
+	public void click_on_drop_down_from_the_top(String navManu) {
+		logger.info("Verifying Click "+navManu+" Drop Down From the top");
+		boolean naveBtnisVisible = hmpage_pom.verify_nav_manue_Btn_isVisible(navManu);
+		softAssert.softAssertTrue(naveBtnisVisible, "Naviagtion manu Button is visible", "Navigation manue Button is not visible");
+
+		logger.info("Verifying Click on Navigation manue Drop Down ");
+		boolean clickAndListExpended = hmpage_pom.click_on_nav_manue_Btn(navManu);
+		logger.info("Performing Navigation Drop Down Assertion");
+		softAssert.softAssertTrue(clickAndListExpended, "Click Nav manu dropdown - List expanded",
+				"Not click on Nave mane dropdown - List not expanded");
+	}
+	
+	
 
 	@Then("Verify Table Demo is available Under Selenium Drop down")
 	public void verify_table_demo_is_available_under_selenium_drop_down() {
