@@ -8,7 +8,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import java.util.List;
 
-
 public class Dashboard_StepD extends CommonMethods {
 	private static final Logger logger = LogManager.getLogger(CommonMethods.class);
 
@@ -22,12 +21,13 @@ public class Dashboard_StepD extends CommonMethods {
 
 	@Then("the {string} sub-menu should be visible under the menu")
 	public void the_sub_menu_should_be_visible_under_the_menu(String subManu) {
-		logger.info("Verifying Click "+subManu+"  From the top Nav Manu");
+		logger.info("Verifying Click " + subManu + "  From the top Nav Manu");
 		boolean subNaveBtnisVisible = dashboardpage_pom.verify_sub_nav_manue_Btn_isVisible(subManu);
-		softAssert.softAssertTrue(subNaveBtnisVisible, subManu+" is present in the  dropdown List", subManu+" is not present in the  dropdown List");
+		softAssert.softAssertTrue(subNaveBtnisVisible, subManu + " is present in the  dropdown List",
+				subManu + " is not present in the  dropdown List");
 
-	}		
-		
+	}
+
 	@Given("I open the {string} page with title {string}")
 	public void i_open_the_page_with_title(String pageButton, String expectedTitle) {
 		boolean titleMatched = dashboardpage_pom.clickOnLeftPanelButton(pageButton, expectedTitle);
@@ -60,7 +60,7 @@ public class Dashboard_StepD extends CommonMethods {
 			boolean result = false;
 			// 4 Perform UI Action based on the field type
 			switch (field) {
-			
+
 			// Same function calling so we can use below format
 			case "Customer Name":
 			case "Address":
@@ -73,16 +73,17 @@ public class Dashboard_StepD extends CommonMethods {
 				break;
 
 			case "Gender":
-				result = newcustomerpage_pom.selectGender(field,value);
+				result = newcustomerpage_pom.selectGender(field, value);
 				break;
 
 			case "Date of Birth":
 				result = newcustomerpage_pom.enteredDataFieldValue(field, value);
-				
+
 			default:
 				logger.warn("File is not mapped in step defination swithch case: " + field);
 			}
-			softAssert.softAssertTrue(result, field+ " to fill on UI Element. ", field+ " failed to fill on UI Element." );
+			softAssert.softAssertTrue(result, field + " to fill on UI Element. ",
+					field + " failed to fill on UI Element.");
 		}
 
 		// finished for loop
@@ -97,41 +98,16 @@ public class Dashboard_StepD extends CommonMethods {
 
 //Finished Class
 
-
-
-
 /*
-//Generic way to use switch case
-case "Customer Name":
-	result = newcustomerpage_pom.enterTypableFieldValue(field, value);
-	break;
-case "Gender":
-	break;
-case "Date Of Birth":
-	break;
-case "Address":
-	result = newcustomerpage_pom.enterTypableFieldValue(field, value);
-	break;
-case "City":
-	result = newcustomerpage_pom.enterTypableFieldValue(field, value);
-	break;
-case "State":
-	result = newcustomerpage_pom.enterTypableFieldValue(field, value);
-	break;
-case "Pin":
-	result = newcustomerpage_pom.enterTypableFieldValue(field, value);
-	break;
-case "Mobile Number":
-	result = newcustomerpage_pom.enterTypableFieldValue(field, value);
-	break;
-case "E-mail":
-	result = newcustomerpage_pom.enterTypableFieldValue(field, value);
-	break;
-*/
-
-
-
-
-
-
-
+ * //Generic way to use switch case case "Customer Name": result =
+ * newcustomerpage_pom.enterTypableFieldValue(field, value); break; case
+ * "Gender": break; case "Date Of Birth": break; case "Address": result =
+ * newcustomerpage_pom.enterTypableFieldValue(field, value); break; case "City":
+ * result = newcustomerpage_pom.enterTypableFieldValue(field, value); break;
+ * case "State": result = newcustomerpage_pom.enterTypableFieldValue(field,
+ * value); break; case "Pin": result =
+ * newcustomerpage_pom.enterTypableFieldValue(field, value); break; case
+ * "Mobile Number": result = newcustomerpage_pom.enterTypableFieldValue(field,
+ * value); break; case "E-mail": result =
+ * newcustomerpage_pom.enterTypableFieldValue(field, value); break;
+ */

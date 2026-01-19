@@ -26,7 +26,7 @@ import io.cucumber.junit.CucumberOptions;
 		features = "src\\test\\resources\\features",
 		glue = {"eal.step_definitions","eal.hooks"},
 		dryRun = false,
-		tags = "@TC_015",
+		tags = "@TC_012",
 		monochrome = true
 )
 

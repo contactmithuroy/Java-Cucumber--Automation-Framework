@@ -5,3 +5,8 @@ Results/test-reports 30-Dec-26 00-08-35/PdfReport/ExtentPdf.pdf
 Results/test-reports 30-Dec-26 00-08-35/screenshot/embedded2.png
 Results/test-reports 30-Dec-26 00-08-35/screenshot/embedded3.png
 Results/test-reports 30-Dec-26 00-08-35/screenshot/embedded4.png
+logs/logs.log
+logs/logs.log
+*.png
+/Results/test-reports 30-Dec-26 22-38-40
+/Results/test-reports 30-Dec-26 22-41-54/PdfReport

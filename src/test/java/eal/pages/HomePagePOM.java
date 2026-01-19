@@ -192,6 +192,11 @@ public class HomePagePOM extends CommonMethods {
 		}
 
 	}
+	
+	public String sanitizeInput(String value) {
+	    return value == null ? "" : value.trim().replaceAll("^\"|\"$", "");
+	}
+
 
 	public String clickOnLoginBtn() {
 		try {
